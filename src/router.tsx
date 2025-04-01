@@ -1,27 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import SEO from "./SEO";
+import withSEO from "./hoc/WithSEO";
 
+const HomeWithSEO = withSEO(Home, {
+  title: "Home | My App",
+  description: "Welcome to our homepage",
+});
+
+const LoginWithSEO = withSEO(Login, {
+  title: "Login | My App",
+  description: "Sign in to explore your account",
+});
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <SEO title="Home | My App" description="Welcome to our homepage" />
-        <Home />
-      </>
-    ),
+    element: <HomeWithSEO />,
   },
   {
     path: "/login",
-    element: (
-      <>
-        <SEO title="Login | My App" description="Sign in to explore your account" />
-        <Login />
-      </>
-    ),
+    element: <LoginWithSEO />,
   },
 ]);
 
