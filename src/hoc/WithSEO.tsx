@@ -1,6 +1,6 @@
 import React from "react";
 import SEO from "../SEO";
-import { SEOProps } from "../constants/interface";
+import { SEOProps } from "../shared-interfaces/src/index";
 
 // Higher-Order Component to wrap a page with SEO metadata
 const withSEO = <P extends object>(
