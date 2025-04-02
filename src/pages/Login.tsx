@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { LoginProps } from "@/shared-interfaces/src/login";
+import { LoginProps } from "@/shared-interfaces/src/interface/login";
 import withSEO from "@/hoc/WithSEO";
 
 const Login: React.FC<LoginProps> = ({ seoProps }) => {
