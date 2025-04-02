@@ -1,5 +1,5 @@
 import { Helmet } from "react-helmet-async";
-import { SEOProps } from "./shared-interfaces/src/index";
+import { SEOProps } from "./shared-interfaces/src/seo";
 
 const SEO: React.FC<SEOProps> = ({ title, description }) => {
   return (

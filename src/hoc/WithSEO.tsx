@@ -1,15 +1,14 @@
 import React from "react";
 import SEO from "../SEO";
-import { SEOProps } from "../shared-interfaces/src/index";
+import { SEOProps } from "../shared-interfaces/src/seo";
 
 // Higher-Order Component to wrap a page with SEO metadata
-const withSEO = <P extends object>(
-  Component: React.ComponentType<P>,
-  seoProps: SEOProps
+const withSEO = <P extends { seoProps?: SEOProps }>(
+  Component: React.ComponentType<P>
 ) => {
   return (props: P) => (
     <>
-      <SEO title={seoProps.title} description={seoProps.description} />
+      {props.seoProps && <SEO title={props.seoProps.title} description={props.seoProps.description} />}
       <Component {...props} />
     </>
   );
