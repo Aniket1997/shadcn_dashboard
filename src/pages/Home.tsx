@@ -1,8 +1,6 @@
 import { useEffect } from "react";
 import { HomeProps } from "@/shared-interfaces/src/interface/home";
 import withSEO from "@/hoc/WithSEO";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "@/components/themeToggler/mode-toggle";
 
 const Home: React.FC<HomeProps> = ({ seoProps }) => {
   useEffect(() => {
@@ -14,13 +12,7 @@ const Home: React.FC<HomeProps> = ({ seoProps }) => {
     }
   }, [seoProps]);
 
-  return (
-    <>
-      <h1>Hello</h1>
-      <ModeToggle/>
-      <Button>Click me</Button>
-    </>
-  );
+  return <div>Home Page</div>;
 };
 
 // ✅ Assign wrapped component to a named variable before export
