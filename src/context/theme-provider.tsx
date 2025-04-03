@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react"
-import { ThemeProviderContext } from './theme-context' // Import the context from the separate file
-import { ThemeProviderProps } from '../shared-interfaces/src/interface/theme'
+import { useEffect, useState, useRef } from "react"
+import { ThemeProviderContext } from "./theme-context"
+import { ThemeProviderProps } from "../shared-interfaces/interface/theme"
+import { Theme } from "../shared-interfaces/interface/theme"
+import localforage from "localforage"
 
 export function ThemeProvider({
   children,
@@ -8,23 +10,44 @@ export function ThemeProvider({
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<"dark" | "light">(
-    () => (localStorage.getItem(storageKey) as "dark" | "light") || defaultTheme
-  )
+  const [theme, setTheme] = useState<Theme>("light")
+  const rootRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const root = window.document.documentElement
+    rootRef.current = document.documentElement
+  }, [])
 
-    root.classList.remove("light", "dark")
-    root.classList.add(theme)
+  // Fetch the theme from localForage asynchronously when the component mounts
+  useEffect(() => {
+    const getStoredTheme = async () => {
+      const storedTheme = await localforage.getItem(storageKey)
+      if (storedTheme) {
+        setTheme(storedTheme as Theme)
+      } else {
+        setTheme(defaultTheme)
+      }
+    }
+
+    getStoredTheme()
+  }, [defaultTheme, storageKey])
+
+  // Effect to update the document's theme class
+  useEffect(() => {
+    if (rootRef.current) {
+      rootRef.current.classList.remove("light", "dark")
+      rootRef.current.classList.add(theme)
+    }
   }, [theme])
+
+  // Update theme in both state and localForage when setTheme is called
+  const updateTheme = async (newTheme: Theme) => {
+    await localforage.setItem(storageKey, newTheme)
+    setTheme(newTheme)
+  }
 
   const value = {
     theme,
-    setTheme: (theme: "dark" | "light") => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
-    },
+    setTheme: updateTheme,
   }
 
   return (
@@ -33,5 +56,5 @@ export function ThemeProvider({
     </ThemeProviderContext.Provider>
   )
 }
-export { ThemeProviderContext }
 
+export { ThemeProviderContext }

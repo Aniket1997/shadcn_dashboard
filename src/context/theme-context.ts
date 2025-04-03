@@ -1,5 +1,5 @@
 import { createContext } from 'react'
-import { ThemeProviderState } from '../shared-interfaces/src/interface/theme'
+import { ThemeProviderState } from '../shared-interfaces/interface/theme'
 
 export const ThemeProviderContext = createContext<ThemeProviderState>({
   theme: "light", // Default theme
