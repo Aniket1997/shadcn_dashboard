@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { HomeProps } from "@/shared-interfaces/src/home";
+import { HomeProps } from "@/shared-interfaces/interface/home";
 import withSEO from "@/hoc/WithSEO";
 
 const Home: React.FC<HomeProps> = ({ seoProps }) => {
