@@ -17,7 +17,7 @@ export interface AnimatedGridPatternProps
   height?: number;
   x?: number;
   y?: number;
-  strokeDasharray?: any;
+  strokeDasharray?: number;
   numSquares?: number;
   maxOpacity?: number;
   duration?: number;
@@ -136,6 +136,7 @@ export function AnimatedGridPattern({
               duration,
               repeat: 1,
               delay: index * 0.1,
+              repeatDelay: repeatDelay,
               repeatType: "reverse",
             }}
             onAnimationComplete={() => updateSquarePosition(id)}

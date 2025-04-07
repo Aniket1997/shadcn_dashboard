@@ -1,12 +1,13 @@
 import { LoginProps } from "@/shared-interfaces/interface/login";
 import withSEO from "@/hoc/WithSEO";
 import { GalleryVerticalEnd } from "lucide-react"
-import { LoginForm } from "@/components/Login/login-form"
 import DashboardImage from '../assets/Dashboard-Image.jpeg';
 import { cn } from "@/lib/utils";
 import { AnimatedGridPattern } from "@/components/magicui/animated-grid-pattern";
+import { SignupForm } from "@/components/Signup/signup-form";
+import React from "react";
 
-const Login: React.FC<LoginProps> = () => {
+const Signup: React.FC<LoginProps> = () => {
   return (
     <div className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
@@ -20,7 +21,7 @@ const Login: React.FC<LoginProps> = () => {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            <LoginForm />
+            <SignupForm/>
           </div>
         </div>
       </div>
@@ -46,5 +47,5 @@ const Login: React.FC<LoginProps> = () => {
 };
 
 // Wrap Login with withSEO before exporting
-const EnhancedLogin = withSEO(Login);
-export default EnhancedLogin;
+const EnhancedSignup = withSEO(Signup);
+export default EnhancedSignup;

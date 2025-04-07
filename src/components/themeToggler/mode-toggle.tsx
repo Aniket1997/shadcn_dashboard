@@ -8,11 +8,11 @@ export function ModeToggle() {
 
   // Toggle handler to change themes between light and dark
   const handleToggleChange = (checked: boolean) => {
-    if (checked) {
-      setTheme(ThemeEnum.DARK);
-    } else {
-      setTheme(ThemeEnum.LIGHT);
-    }
+    if(checked){
+      return setTheme(ThemeEnum.DARK);
+      }
+    
+    return setTheme(ThemeEnum.LIGHT);
   };
 
   // Function to determine the icon to display
